@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import "./styles.css";
+import useContentful from "./useContentful";
+import BlogCard from "./blogCards";
 
-function App() {
+const App = () => {
+  const [blogPost, setBlogPost] = useState([]);
+  const { getBlogPost } = useContentful();
+
+  useEffect(() => {
+    getBlogPost().then((response) => setBlogPost(response));
+  });
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header>
+      <h1>Contentful Sample</h1>
+      <p>this is a sample site so that I can add more info to it</p>
       </header>
+      {blogPost.map((blogPost, index) => (
+        <BlogCard key={index} blogPost={blogPost} />
+      ))}
     </div>
   );
-}
+};
 
 export default App;
