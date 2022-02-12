@@ -8,5 +8,8 @@ p{
     font-size: 1.8rem;
 }
 
-
+.card{
+    display:flex;
+    align-self: center;
+}
 
